@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Compare a resume with a job description using an open-weight AI model that runs in your browser." />
+  <title>JobFit Local — Private AI Resume Matcher</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#">JobFit <span>Local</span></a>
+    <div class="privacy-badge" aria-label="Private, local processing"><span aria-hidden="true">●</span> Runs in your browser</div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="eyebrow">OPEN-WEIGHT AI · NO ACCOUNT · NO UPLOADS</p>
+      <h1 id="hero-title">Know where your resume<br /><em>actually fits.</em></h1>
+      <p class="hero-copy">Compare your resume with any job description using local AI. Get a semantic match score, skill gaps, and a focused application plan—without sending your text to a server.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="#matcher">Check my fit</a>
+        <button class="button secondary" id="sampleButton" type="button">Try an example</button>
+      </div>
+      <div class="trust-row" aria-label="Product benefits">
+        <span>✓ Open-weight model</span><span>✓ Free to run</span><span>✓ Resume stays private</span>
+      </div>
+    </section>
+
+    <section class="matcher" id="matcher" aria-labelledby="matcher-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">YOUR PRIVATE WORKSPACE</p><h2 id="matcher-title">Resume ↔ role match</h2></div>
+        <p>The first analysis downloads a compact model. After that, your browser can reuse its cached copy.</p>
+      </div>
+
+      <div class="input-grid">
+        <label class="field-card">
+          <span class="field-label"><strong>1. Your resume</strong><small id="resumeCount">0 words</small></span>
+          <textarea id="resume" placeholder="Paste your resume text here…" aria-describedby="privacy-note"></textarea>
+        </label>
+        <label class="field-card">
+          <span class="field-label"><strong>2. Job description</strong><small id="jobCount">0 words</small></span>
+          <textarea id="job" placeholder="Paste the job description here…"></textarea>
+        </label>
+      </div>
+
+      <div class="action-row">
+        <p id="privacy-note"><strong>Private by design.</strong> Your text is processed locally and never uploaded by this app.</p>
+        <button class="button primary analyze" id="analyzeButton" type="button">Analyze with local AI <span aria-hidden="true">→</span></button>
+      </div>
+      <div class="status" id="status" role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="results" id="results" hidden aria-labelledby="results-title">
+      <div class="score-panel">
+        <p class="eyebrow">SEMANTIC FIT</p>
+        <div class="score-ring" id="scoreRing"><span id="score">—</span><small>/100</small></div>
+        <h2 id="results-title">Your match snapshot</h2>
+        <p id="scoreSummary"></p>
+      </div>
+      <div class="result-details">
+        <article>
+          <h3>Skills already aligned</h3>
+          <div class="chips" id="matchedSkills"></div>
+        </article>
+        <article>
+          <h3>Skills to address</h3>
+          <div class="chips gaps" id="missingSkills"></div>
+        </article>
+        <article>
+          <h3>Next best moves</h3>
+          <ol id="recommendations"></ol>
+        </article>
+      </div>
+    </section>
+
+    <section class="how-it-works" aria-labelledby="how-title">
+      <p class="eyebrow">HOW IT WORKS</p>
+      <h2 id="how-title">Useful signal, without surrendering your data.</h2>
+      <div class="steps">
+        <article><span>01</span><h3>Read locally</h3><p>Your resume and the role stay inside your browser session.</p></article>
+        <article><span>02</span><h3>Compare meaning</h3><p>An open-weight sentence-transformer maps both texts into semantic embeddings.</p></article>
+        <article><span>03</span><h3>Act clearly</h3><p>You get skill gaps and honest suggestions—not invented qualifications.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built for future Nikhil during Hacktoberfest 2026.</p>
+    <p>Powered by <a href="https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2">all-MiniLM-L6-v2</a> and Transformers.js.</p>
+  </footer>
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
